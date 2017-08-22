@@ -1,0 +1,16 @@
+
+separate the morse code message using audacity 
+
+Decoded:
+
+* instance11 = SWAYAMSSIGNM  
+* instance12 = SWAYAMSSENNS 
+* instance21 = SWAYAMUA5UTV 
+* instance22 = SWAYAMUARUNV 
+* instance31 = SWAYAMUA5UT 
+* instance32 = SNAYAMUE 
+* instance33 = SWAYAMUARUNV
+* instance41 = TUA5UNV 
+* instance42 = SWAYAMUABUNB 
+
+
