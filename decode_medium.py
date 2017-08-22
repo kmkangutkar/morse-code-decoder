@@ -6,6 +6,9 @@ import sys
 import os
 
 MORSECODE = "##TEMNAIOGKDWRUS##QZYCXBJP#L#FVH09#8###7######=61####+##2###3#45"
+IGNORE_ZERO_LIMIT = 11
+SAMPLER_CONST = 3295
+NEXT_LETTER_LIMIT = 51
 
 def plot_audio(sampled_audio):
 	plt.plot(sampled_audio[0:len(sampled_audio)])
@@ -43,7 +46,7 @@ def convert_to_zero_one_sum(index_audio):
 					count_zero += 1
 					i += 1
 			     
-				if count_zero <= 10:
+				if count_zero <= IGNORE_ZERO_LIMIT:
 					i -= 1
 					counter += count_zero   
 				else:
@@ -83,7 +86,7 @@ def decode(zero_one):
 				morse_index += '0'
 #			print '-',
 		else:
-			if x[1] >= 50:
+			if x[1] >= NEXT_LETTER_LIMIT: 
 				index = int(morse_index, 2)
 				if index < len(MORSECODE):
 					result += MORSECODE[index]	
@@ -138,7 +141,7 @@ def main():
 		flag = 0
 	audio = input_data[1];
 #set sampler value
-	sampler = len(audio) / 3295
+	sampler = len(audio) / SAMPLER_CONST
 	print sampler, len(audio)
 #sample audio at sampler rate
 	sampled_audio = sample(audio, sampler, flag)
@@ -150,7 +153,7 @@ def main():
 	low = mid - mid / 2
 #plot sampled_audio	
 	plot_audio(sampled_audio)
-#if audio value in mid range = 1 else = 0
+#if audio value in mid range then = 1 else = 0
 	index_audio = get_mid_range(sampled_audio, low, high)
 #sum consecutive ones and zeros
 	zero_one = convert_to_zero_one_sum(index_audio)
